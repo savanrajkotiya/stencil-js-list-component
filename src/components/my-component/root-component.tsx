@@ -21,6 +21,6 @@ export class RootComponent {
 
     @Listen('clickListElement')
     clickListElement(event: CustomEvent) {
-        console.log('this is event from child!', event);
+        console.log('this is event from child!', event.detail);
     }
 }

@@ -6,56 +6,50 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface ListComponent {
+        "listdata": any;
+        "renderkey": any;
+    }
+    interface RootComponent {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLListComponentElement extends Components.ListComponent, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLListComponentElement: {
+        prototype: HTMLListComponentElement;
+        new (): HTMLListComponentElement;
+    };
+    interface HTMLRootComponentElement extends Components.RootComponent, HTMLStencilElement {
+    }
+    var HTMLRootComponentElement: {
+        prototype: HTMLRootComponentElement;
+        new (): HTMLRootComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "list-component": HTMLListComponentElement;
+        "root-component": HTMLRootComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface ListComponent {
+        "listdata"?: any;
+        "onClickListElement"?: (event: CustomEvent<any>) => void;
+        "renderkey"?: any;
+    }
+    interface RootComponent {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "list-component": ListComponent;
+        "root-component": RootComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "list-component": LocalJSX.ListComponent & JSXBase.HTMLAttributes<HTMLListComponentElement>;
+            "root-component": LocalJSX.RootComponent & JSXBase.HTMLAttributes<HTMLRootComponentElement>;
         }
     }
 }
